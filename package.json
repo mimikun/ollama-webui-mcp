@@ -1,0 +1,16 @@
+{
+  "name": "ollama-webui-mcp",
+  "version": "1.0.0",
+  "description": "Local LLM chat environment with Ollama, Open WebUI, and MCP",
+  "scripts": {
+    "check-secrets": "secretlint \"**/*\"",
+    "pre-commit": "secretlint \"**/*\"",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
+    "logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "@secretlint/secretlint-rule-preset-recommend": "^8.0.0",
+    "secretlint": "^8.0.0"
+  }
+}
