@@ -1,26 +1,2 @@
-# 環境変数
-.env
-.env.local
-.env.*.local
-
-# Docker volumes (中身のみ除外、フォルダ構造は保持)
-mcpo-data/*
-!mcpo-data/.keep
-open-webui-data/*
-!open-webui-data/.keep
-
-# Logs
-*.log
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-
-# Secrets and keys
-*.key
-*.pem
-secrets/
+test_data/sample.xlsx
+open-webui-data
