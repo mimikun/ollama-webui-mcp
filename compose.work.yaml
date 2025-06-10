@@ -1,0 +1,42 @@
+---
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    network_mode: "host"
+    restart: unless-stopped
+    environment:
+      - ENABLE_SIGNUP=true
+      - DEFAULT_LOCALE=ja
+      # - ENABLE_CHANNELS=false
+      # - WEBHOOK_URL=http://localhost
+      - OLLAMA_BASE_URL=http://localhost:11434
+      - ENABLE_OPENAI_API=false
+      - WEBUI_AUTH=false
+      # TODO: check it: tとfでの違いを見る
+      - ENABLE_DIRECT_CONNECTIONS=true
+      - USER_PERMISSIONS_FEATURES_DIRECT_TOOL_SERVERS=false
+    volumes:
+      # - type: bind
+      #   source: ./open-webui-data
+      #   target: /app/backend/data
+      - type: volume
+        source: uploads
+        target: /app/backend/data/uploads
+
+  mcpo:
+    build:
+      context: ./mcpo-build
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: ./mcp-configs/company.json
+        target: /app/config.json
+        read_only: true
+      - type: volume
+        source: uploads
+        target: /app/uploads-data
+
+volumes:
+  uploads:

@@ -1,0 +1,28 @@
+---
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      # TODO: This is my WSL IP address
+      - OLLAMA_BASE_URL=http://192.168.1.137:11434
+      - WEBUI_AUTH=false
+      - ENABLE_SIGNUP=true
+    volumes:
+      - type: bind
+        source: ./open-webui-data
+        target: /app/backend/data
+
+  mcpo:
+    build:
+      context: ./mcpo-build
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: bind
+        source: ./mcp-configs/home.json
+        target: /app/config.json
+        read_only: true
