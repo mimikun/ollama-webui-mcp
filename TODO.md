@@ -17,7 +17,8 @@
   - `paru -S gnumeric` して、 `ssconvert sample.csv sample.xlsx` するだけ
 - [ ] Makefile作成
   - [ ] 各環境の切り替え方法
-
+- [x] merge some compose.yaml
+    - https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/
 ---
 
 <https://docs.docker.com/engine/storage/volumes/#when-to-use-volumes>
