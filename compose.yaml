@@ -1,0 +1,29 @@
+---
+# compose.yaml base
+services:
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    environment:
+      - WEBUI_AUTH=false
+      - ENABLE_SIGNUP=true
+      - DEFAULT_LOCALE=ja
+      - ENABLE_OPENAI_API=false
+    volumes:
+      - type: volume
+        source: uploads
+        target: /app/backend/data/uploads
+
+  mcpo:
+    build:
+      context: ./mcpo-build
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - type: volume
+        source: uploads
+        target: /app/uploads-data
+
+volumes:
+  uploads:
