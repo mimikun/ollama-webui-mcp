@@ -70,7 +70,7 @@ Linuxなので性能をフルに使える
 
 ```fish
 set -x COMPOSE_FILE_NAME compose.home.yaml # homeの場合
-docker compose -f COMPOSE_FILE_NAME pull
-docker compose -f COMPOSE_FILE_NAME build
-docker compose -f COMPOSE_FILE_NAME up -d
+docker compose -f compose.yaml -f COMPOSE_FILE_NAME pull
+docker compose -f compose.yaml -f COMPOSE_FILE_NAME build
+docker compose -f compose.yaml -f COMPOSE_FILE_NAME up -d
 ```
